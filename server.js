@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/ninja_validator', (req, res) => {
+app.post('/ninja_validator', (req, res) => {
     let result;
 
     switch (req.query.ninja_username) {
