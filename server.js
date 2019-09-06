@@ -10,21 +10,22 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json())
 
-let allowedOrigins = ['http://localhost:3000',
-    'http://localhost:4200'
-];
+let whitelist = 'http://localhost:4200';
 
 
-app.use(cors({
+
+var corsOptions = {
     origin: function (origin, callback) {
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-            var msg = 'The CORS does not allow access from the specified Origin.';
-            return callback(new Error(msg), false);
+
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+            return callback(msg, false);
         }
-        return callback(null, true);
     }
-}));
+}
 
 app.get('/', (req, res) => {
     res.json({
@@ -32,7 +33,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', cors(corsOptions), (req, res, next) => {
     let result;
 
     if (!req.body.username) {
