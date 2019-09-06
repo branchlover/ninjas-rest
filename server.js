@@ -15,35 +15,69 @@ app.get('/', (req, res) => {
     });
 });
 
-app.post('/ninja_validator', (req, res) => {
+app.post('/login', (req, res) => {
     let result;
 
-    switch (req.query.ninja_username) {
+    if (!req.query.username) {
+        return res.status(400).json({
+            status: 400,
+            message: "Error: Field ninja_username must be present"
+        })
+    }
+
+    switch (req.query.username) {
         case "Asuka":
+            if (!req.query.password === "12345")
+                res.status(401).json({
+                    status: 401,
+                    message: "Unauthorized Ninja not match"
+                });
             result = "Shinobi";
             break;
         case "Nara":
+            if (!req.query.password === "12345")
+                res.status(401).json({
+                    status: 401,
+                    message: "Unauthorized Ninja not match"
+                });
             result = "Ukami";
             break;
         case "Sengoku":
+            if (!req.query.password === "12345")
+                res.status(401).json({
+                    status: 401,
+                    message: "Unauthorized Ninja not match"
+                });
             result = "Kanja";
             break;
         case "Edo":
+            if (!req.query.password === "12345")
+                res.status(401).json({
+                    status: 401,
+                    message: "Unauthorized Ninja not match"
+                });
             result = "Onmitsu";
             break;
         case "Era Taisho":
+            if (!req.query.password === "12345")
+                res.status(401).json({
+                    status: 401,
+                    message: "Unauthorized Ninja not match"
+                });
             result = "Ninsha";
             break;
         default:
-            result = "none";
             res.status(401).json({
-                "result": result
+                status: 401,
+                message: "Unauthorized Ninja not match"
             });
     }
 
     res.status(200).json({
-        "result": result,
-        "message": "Weicome to Ninja-Rest"
+        status: 200,
+        result: result,
+        password: 12345,
+        message: "Weicome to Ninja-Rest"
     });
 });
 
