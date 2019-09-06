@@ -1,0 +1,24 @@
+{
+  "name": "ninjas-rest",
+  "version": "1.0.0",
+  "description": "ninjas power",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@krisedlabsGithub:branchlover/ninjas-rest.git"
+  },
+  "keywords": [
+    "ninjas"
+  ],
+  "author": "Edgardo Santana",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.13"
+  }
+}
