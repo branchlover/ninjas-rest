@@ -10,22 +10,13 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json())
 
-let whitelist = 'http://localhost:4200';
-
-
-
-var corsOptions = {
-    origin: function (origin, callback) {
-
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true)
-        } else {
-            var msg = 'The CORS policy for this site does not ' +
-                'allow access from the specified Origin.';
-            return callback(msg, false);
-        }
-    }
-}
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
 
 app.get('/', (req, res) => {
     res.json({
@@ -33,8 +24,10 @@ app.get('/', (req, res) => {
     });
 });
 
-app.post('/login', cors(corsOptions), (req, res, next) => {
+app.post('/login', (req, res, next) => {
     let result;
+
+    console.log("paso");
 
     if (!req.body.username) {
         return res.status(400).json({
