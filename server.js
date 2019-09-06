@@ -18,16 +18,16 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
     let result;
 
-    if (!req.query.username) {
+    if (!req.body.username) {
         return res.status(400).json({
             status: 400,
             message: "Error: Field ninja_username must be present"
         })
     }
 
-    switch (req.query.username) {
+    switch (req.body.username) {
         case "Asuka":
-            if (!req.query.password === "12345")
+            if (!req.body.password === "12345")
                 res.status(401).json({
                     status: 401,
                     message: "Unauthorized Ninja not match"
@@ -35,7 +35,7 @@ app.post('/login', (req, res) => {
             result = "Shinobi";
             break;
         case "Nara":
-            if (!req.query.password === "12345")
+            if (!req.body.password === "12345")
                 res.status(401).json({
                     status: 401,
                     message: "Unauthorized Ninja not match"
@@ -43,7 +43,7 @@ app.post('/login', (req, res) => {
             result = "Ukami";
             break;
         case "Sengoku":
-            if (!req.query.password === "12345")
+            if (!req.body.password === "12345")
                 res.status(401).json({
                     status: 401,
                     message: "Unauthorized Ninja not match"
@@ -51,7 +51,7 @@ app.post('/login', (req, res) => {
             result = "Kanja";
             break;
         case "Edo":
-            if (!req.query.password === "12345")
+            if (!req.body.password === "12345")
                 res.status(401).json({
                     status: 401,
                     message: "Unauthorized Ninja not match"
@@ -59,7 +59,7 @@ app.post('/login', (req, res) => {
             result = "Onmitsu";
             break;
         case "Era Taisho":
-            if (!req.query.password === "12345")
+            if (!req.body.password === "12345")
                 res.status(401).json({
                     status: 401,
                     message: "Unauthorized Ninja not match"
