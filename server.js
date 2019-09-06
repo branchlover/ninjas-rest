@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
     res.json({
-        "message": "Weicome to Ninja-Rest"
+        "message": "Welcome to Ninja-Rest"
     });
 });
 
@@ -87,8 +87,7 @@ app.post('/login', (req, res, next) => {
     res.status(200).json({
         status: 200,
         result: result,
-        password: 12345,
-        message: "Weicome to Ninja-Rest"
+        message: "Welcome to Ninja-Rest"
     });
 });
 
